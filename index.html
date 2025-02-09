@@ -17,10 +17,11 @@
             padding: 0;
             overflow: hidden;
         }
+
         .envelope {
             position: relative;
             width: 80%;
-            max-width: 300px;
+            max-width: 320px;
             height: 200px;
             background: #ff4d4d;
             border-radius: 10px;
@@ -31,6 +32,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease-in-out;
         }
+
         .seal {
             position: absolute;
             background: gold;
@@ -45,6 +47,7 @@
             color: white;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
+
         .letter-container {
             background: white;
             padding: 20px;
@@ -59,14 +62,17 @@
             transform: translate(-50%, -50%) scale(0);
             transition: transform 1s ease-in-out;
         }
+
         .buttons {
             margin-top: 20px;
         }
+
         .response {
             margin-top: 15px;
             font-weight: bold;
             color: #ff4d4d;
         }
+
         .btn {
             background: #ff4d4d;
             color: white;
@@ -75,10 +81,13 @@
             border-radius: 5px;
             cursor: pointer;
             margin: 5px;
+            font-size: 16px;
         }
+
         .btn.gray {
             background: gray;
         }
+
         .petal {
             position: absolute;
             width: 15px;
@@ -88,9 +97,36 @@
             opacity: 0.7;
             animation: fall linear infinite;
         }
+
         @keyframes fall {
             from { transform: translateY(-10vh) translateX(0); }
             to { transform: translateY(100vh) translateX(30px); }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 600px) {
+            .envelope {
+                max-width: 80%;
+                height: 180px;
+            }
+
+            .seal {
+                font-size: 18px;
+            }
+
+            .letter-container {
+                width: 90%;
+                padding: 15px;
+            }
+
+            .btn {
+                font-size: 14px;
+                padding: 8px;
+            }
+
+            .response {
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -172,6 +208,5 @@
             }
         }
     </script>
-    
 </body>
 </html>
