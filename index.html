@@ -176,6 +176,7 @@
                 createPetals();
             } else {
                 responseElement.innerText = "Oh no! Won't you try again 😅";
+                sendNotification()
                 setTimeout(() => {
                     responseElement.innerText = "Would you reconsider? 🥺";
                 }, 2000);
@@ -184,7 +185,7 @@
     
         function sendNotification() {
             let email = "mbalimatlakane@gmail.com"; // Change to your email
-            let message = "Hi Daddy, I would love to spend some time with you! YES! YES! YES! 🥺🤍"; // Change to your message
+            let message = "Hi King..."; // Change to your message
             
             // Open WhatsApp link to send message manually
             window.open(`https://api.whatsapp.com/send?phone=+27677989703&text=${encodeURIComponent(message)}`, '_blank');
