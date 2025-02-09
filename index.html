@@ -13,6 +13,7 @@
             background-color: #ffe6e6;
             font-family: Arial, sans-serif;
             text-align: center;
+            overflow: hidden;
         }
         .letter-container {
             background: white;
@@ -51,6 +52,19 @@
         .btn.gray {
             background: gray;
         }
+        .petal {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: pink;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            from { transform: translateY(-10vh) translateX(0); }
+            to { transform: translateY(100vh) translateX(30px); }
+        }
     </style>
 </head>
 <body>
@@ -74,26 +88,31 @@
             let responseElement = document.getElementById('response');
             if (answer === 'yes') {
                 responseElement.innerText = "Yay! I can't wait to see you! ❤️";
-                notifyMe("She said YES! 🎉");
+                sendNotification();
+                createPetals();
             } else {
-                responseElement.innerText = "Oh no! Let me try again 😅";
+                responseElement.innerText = "Oh no! Won't you try again 😅";
                 setTimeout(() => {
                     responseElement.innerText = "Would you reconsider? 🥺";
                 }, 2000);
             }
         }
         
-        function notifyMe(message) {
-            if ("Notification" in window) {
-                if (Notification.permission === "granted") {
-                    new Notification(message);
-                } else if (Notification.permission !== "denied") {
-                    Notification.requestPermission().then(permission => {
-                        if (permission === "granted") {
-                            new Notification(message);
-                        }
-                    });
-                }
+        function sendNotification() {
+            let email = "mbalimatlakane@gmail.com"; // Change to your email
+            let message = "She said YES! 🎉";
+            fetch(`https://api.whatsapp.com/send?phone=0677989703&text=${encodeURIComponent(message)}`);
+            fetch(`https://formsubmit.co/${email}`, { method: "POST", body: new FormData() });
+        }
+        
+        function createPetals() {
+            for (let i = 0; i < 50; i++) {
+                let petal = document.createElement("div");
+                petal.classList.add("petal");
+                petal.style.left = Math.random() * window.innerWidth + "px";
+                petal.style.animationDuration = (Math.random() * 5 + 3) + "s";
+                document.body.appendChild(petal);
+                setTimeout(() => petal.remove(), 8000);
             }
         }
     </script>
