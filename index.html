@@ -128,7 +128,7 @@
                 letter.style.transform = 'translate(-50%, -50%) scale(1)';
             }, 100);
         }
-        
+    
         function respond(answer) {
             let responseElement = document.getElementById('response');
             if (answer === 'yes') {
@@ -142,14 +142,25 @@
                 }, 2000);
             }
         }
-        
+    
         function sendNotification() {
             let email = "mbalimatlakane@gmail.com"; // Change to your email
-            let message = "She said YES! 🎉";
-            fetch(`https://api.whatsapp.com/send?phone=+27677989703&text=${encodeURIComponent(message)}`);
-            fetch(`https://formsubmit.co/${email}`, { method: "POST", body: new FormData() });
+            let message = "Hi Daddy, I would love to spend some time with you! YES! YES! YES! 🎉";
+            
+            // Open WhatsApp link to send message manually
+            window.open(`https://api.whatsapp.com/send?phone=+27677989703&text=${encodeURIComponent(message)}`, '_blank');
+            
+            // Send email using FormSubmit (ensure the HTML form is set up correctly)
+            let formData = new FormData();
+            formData.append('email', email);
+            formData.append('message', message);
+            
+            fetch(`https://formsubmit.co/${email}`, {
+                method: 'POST',
+                body: formData
+            });
         }
-        
+    
         function createPetals() {
             for (let i = 0; i < 50; i++) {
                 let petal = document.createElement("div");
@@ -161,5 +172,6 @@
             }
         }
     </script>
+    
 </body>
 </html>
