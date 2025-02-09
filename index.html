@@ -15,6 +15,32 @@
             text-align: center;
             overflow: hidden;
         }
+        .envelope {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background: #ff4d4d;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .seal {
+            position: absolute;
+            background: gold;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 20px;
+            color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
         .letter-container {
             background: white;
             padding: 20px;
@@ -22,15 +48,11 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             display: none;
             max-width: 400px;
-        }
-        .open-btn {
-            background: #ff4d4d;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 18px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform 1s ease-in-out;
         }
         .buttons {
             margin-top: 20px;
@@ -68,11 +90,26 @@
     </style>
 </head>
 <body>
-    <button class="open-btn" onclick="openLetter()">Click to Open ❤️</button>
+    <div class="envelope" onclick="openLetter()">
+        <div class="seal">💌</div>
+    </div>
     <div class="letter-container" id="letter">
-        <p>My Dearest,</p>
-        <p>Ever since I met you, my days have been brighter, and my heart beats a little faster. You are the most wonderful person I have ever known, and I cherish every moment with you.</p>
+        
+        <p> I just thought I should stick to what I know best...</p>
+        <hr>
+        <p>B. 🥺🤍</p>
+        <p>I’ve been thinking about how to put into words what I feel for you, but it seems impossible to capture all of it in just a few lines. I can’t help but smile whenever I think about the little moments we’ve shared – the way your laugh fills the room or how your eyes seem to light up when you talk about something you love, jush how passionate and loud you get. I don't know how you do it, but you just make everything feel brighter, and I find myself more at peace just being around you.</p>
+       
+        <p>You have this way of making ordinary days feel extraordinary, and every moment spent with you feels like a gift. I feel so lucky to be part of your life, and I cherish every single memory we’re making together.</p>
+
+        <p> You’ve become so much more than someone I care for – you’re my best friend, my confidant, and someone I can always rely on.</p>
+
+        <p>I guess what I’m trying to say is that I love you. And not just today, but in every moment, in everything you are and will be. You make me better, and I can’t imagine my life without you in it.</p>
+
+        <p>And I know that I don't know what I'm doing, but I know that I love you, and that I want to make your life better than it already is.</p>
+        <p>❤️🤍❤️🤍❤️🤍❤️🤍❤️🤍❤️🤍❤️🤍❤️🤍❤️🤍</p>
         <p>Would you make my day even more special by going on a date with me?</p>
+        <hr>
         <div class="buttons">
             <button class="btn" onclick="respond('yes')">Yes, of course! ❤️</button>
             <button class="btn gray" onclick="respond('no')">Try again 😜</button>
@@ -81,13 +118,18 @@
     </div>
     <script>
         function openLetter() {
-            document.querySelector('.open-btn').style.display = 'none';
-            document.getElementById('letter').style.display = 'block';
+            document.querySelector('.envelope').style.display = 'none';
+            let letter = document.getElementById('letter');
+            letter.style.display = 'block';
+            setTimeout(() => {
+                letter.style.transform = 'translate(-50%, -50%) scale(1)';
+            }, 100);
         }
+        
         function respond(answer) {
             let responseElement = document.getElementById('response');
             if (answer === 'yes') {
-                responseElement.innerText = "Yay! I can't wait to see you! ❤️";
+                responseElement.innerText = "Perfec! I can't wait to see you! ❤️";
                 sendNotification();
                 createPetals();
             } else {
@@ -101,7 +143,7 @@
         function sendNotification() {
             let email = "mbalimatlakane@gmail.com"; // Change to your email
             let message = "She said YES! 🎉";
-            fetch(`https://api.whatsapp.com/send?phone=0677989703&text=${encodeURIComponent(message)}`);
+            fetch(`https://api.whatsapp.com/send?phone=+27677989703&text=${encodeURIComponent(message)}`);
             fetch(`https://formsubmit.co/${email}`, { method: "POST", body: new FormData() });
         }
         
