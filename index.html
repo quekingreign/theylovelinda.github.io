@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love Letter</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffe6e6;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .letter-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: none;
+            max-width: 400px;
+        }
+        .open-btn {
+            background: #ff4d4d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        .response {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #ff4d4d;
+        }
+        .btn {
+            background: #ff4d4d;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .btn.gray {
+            background: gray;
+        }
+    </style>
+</head>
+<body>
+    <button class="open-btn" onclick="openLetter()">Click to Open ❤️</button>
+    <div class="letter-container" id="letter">
+        <p>My Dearest,</p>
+        <p>Ever since I met you, my days have been brighter, and my heart beats a little faster. You are the most wonderful person I have ever known, and I cherish every moment with you.</p>
+        <p>Would you make my day even more special by going on a date with me?</p>
+        <div class="buttons">
+            <button class="btn" onclick="respond('yes')">Yes, of course! ❤️</button>
+            <button class="btn gray" onclick="respond('no')">Try again 😜</button>
+        </div>
+        <p class="response" id="response"></p>
+    </div>
+    <script>
+        function openLetter() {
+            document.querySelector('.open-btn').style.display = 'none';
+            document.getElementById('letter').style.display = 'block';
+        }
+        function respond(answer) {
+            let responseElement = document.getElementById('response');
+            if (answer === 'yes') {
+                responseElement.innerText = "Yay! I can't wait to see you! ❤️";
+                notifyMe("She said YES! 🎉");
+            } else {
+                responseElement.innerText = "Oh no! Let me try again 😅";
+                setTimeout(() => {
+                    responseElement.innerText = "Would you reconsider? 🥺";
+                }, 2000);
+            }
+        }
+        
+        function notifyMe(message) {
+            if ("Notification" in window) {
+                if (Notification.permission === "granted") {
+                    new Notification(message);
+                } else if (Notification.permission !== "denied") {
+                    Notification.requestPermission().then(permission => {
+                        if (permission === "granted") {
+                            new Notification(message);
+                        }
+                    });
+                }
+            }
+        }
+    </script>
+</body>
+</html>
