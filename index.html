@@ -13,11 +13,14 @@
             background-color: #ffe6e6;
             font-family: Arial, sans-serif;
             text-align: center;
+            margin: 0;
+            padding: 0;
             overflow: hidden;
         }
         .envelope {
             position: relative;
-            width: 300px;
+            width: 80%;
+            max-width: 300px;
             height: 200px;
             background: #ff4d4d;
             border-radius: 10px;
@@ -26,6 +29,7 @@
             align-items: center;
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
         }
         .seal {
             position: absolute;
@@ -47,7 +51,8 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             display: none;
-            max-width: 400px;
+            max-width: 90%;
+            width: 400px;
             position: absolute;
             top: 50%;
             left: 50%;
@@ -94,15 +99,13 @@
         <div class="seal">💌</div>
     </div>
     <div class="letter-container" id="letter">
-        
         <p> I just thought I should stick to what I know best...</p>
         <hr>
         <p>B. 🥺🤍</p>
-        <p>I’ve been thinking about how to put into words what I feel for you, but it seems impossible to capture all of it in just a few lines. I can’t help but smile whenever I think about the little moments we’ve shared – the way your laugh fills the room or how your eyes seem to light up when you talk about something you love, jush how passionate and loud you get. I don't know how you do it, but you just make everything feel brighter, and I find myself more at peace just being around you.</p>
-       
+        <p>I’ve been thinking about how to put into words what I feel for you, but it seems impossible to capture all of it in just a few lines. I can’t help but smile whenever I think about the little moments we’ve shared – the way your laugh fills the room or how your eyes seem to light up when you talk about something you love, just how passionate and loud you get. I don't know how you do it, but you just make everything feel brighter, and I find myself more at peace just being around you.</p>
         <p>You have this way of making ordinary days feel extraordinary, and every moment spent with you feels like a gift. I feel so lucky to be part of your life, and I cherish every single memory we’re making together.</p>
 
-        <p> You’ve become so much more than someone I care for – you’re my best friend, my confidant, and someone I can always rely on.</p>
+        <p>You’ve become so much more than someone I care for – you’re my best friend, my confidant, and someone I can always rely on.</p>
 
         <p>I guess what I’m trying to say is that I love you. And not just today, but in every moment, in everything you are and will be. You make me better, and I can’t imagine my life without you in it.</p>
 
@@ -129,7 +132,7 @@
         function respond(answer) {
             let responseElement = document.getElementById('response');
             if (answer === 'yes') {
-                responseElement.innerText = "Perfec! I can't wait to see you! ❤️";
+                responseElement.innerText = "Perfect! I can't wait to see you! ❤️";
                 sendNotification();
                 createPetals();
             } else {
